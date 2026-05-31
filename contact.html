@@ -732,6 +732,57 @@ footer {
   .hero-stats { display: none; }
 }
 
+
+/* ── FORMSPREE STATES ── */
+[data-fs-success] {
+  display: none; padding: 20px 24px;
+  background: rgba(10,92,107,0.12);
+  border: 1px solid rgba(13,122,140,0.4);
+  border-left: 3px solid var(--ocean-hi);
+  margin-bottom: 24px;
+}
+[data-fs-success].visible {
+  display: block;
+  animation: fs-fadein 0.4s ease;
+}
+[data-fs-success] p {
+  font-size: 11px; line-height: 1.8; color: var(--stone-hi);
+  margin: 0;
+}
+[data-fs-success] .fs-title {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px;
+  color: var(--ocean-hi); margin-bottom: 6px;
+}
+[data-fs-error]:not(:empty) {
+  display: block; font-size: 9px; letter-spacing: 0.15em;
+  color: var(--crimson-hi); margin-top: 6px;
+  padding: 6px 10px; background: rgba(107,26,34,0.08);
+  border-left: 2px solid var(--crimson-hi);
+}
+[data-fs-error]:empty { display: none; }
+.fs-form-error {
+  padding: 16px 20px; margin-bottom: 20px;
+  background: rgba(107,26,34,0.1); border: 1px solid rgba(140,36,48,0.4);
+  border-left: 3px solid var(--crimson-hi);
+  font-size: 10px; color: var(--crimson-hi);
+  display: none;
+}
+.fs-form-error.visible { display: block; }
+.submit-btn:disabled {
+  opacity: 0.6; cursor: not-allowed; transform: none;
+  box-shadow: none;
+}
+.submit-btn.sending .arrow { animation: sending-spin 1s linear infinite; }
+@keyframes sending-spin {
+  0%  { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(4px) rotate(90deg); }
+  100%{ transform: translateX(0) rotate(0deg); }
+}
+@keyframes fs-fadein {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 </style>
 </head>
 <body>
@@ -784,23 +835,61 @@ footer {
       </div>
     </div>
   </div>
-  <div class="contact-form reveal reveal-d2">
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">// Name</label><input class="form-input" type="text" placeholder="Your name"></div>
-      <div class="form-group"><label class="form-label">// Email</label><input class="form-input" type="email" placeholder="your@email.com"></div>
+  <form class="contact-form reveal reveal-d2" id="contact-form">
+
+    <!-- Success banner -->
+    <div data-fs-success id="fs-success">
+      <p class="fs-title">// Message Received ✓</p>
+      <p>Thanks for reaching out. We'll get back to you shortly at the email you provided.</p>
     </div>
-    <div class="form-group"><label class="form-label">// Service Needed</label>
-      <select class="form-select form-input">
+
+    <!-- Form-level error banner -->
+    <div class="fs-form-error" id="fs-form-error" data-fs-error></div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="fs-name">// Name</label>
+        <input id="fs-name" class="form-input" type="text" name="name"
+               placeholder="Your name" required data-fs-field>
+        <span data-fs-error="name"></span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="fs-email">// Email</label>
+        <input id="fs-email" class="form-input" type="email" name="email"
+               placeholder="your@email.com" required data-fs-field>
+        <span data-fs-error="email"></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="fs-service">// Service Needed</label>
+      <select id="fs-service" class="form-select form-input" name="service" required data-fs-field>
         <option value="" disabled selected>Select a service</option>
-        <option>Software Development</option><option>Technical Assistance</option>
-        <option>Logo &amp; Brand Design</option><option>Poster &amp; Advertising</option>
-        <option>Photography &amp; Imaging</option><option>Phones, Laptops &amp; Accessories</option>
+        <option>Software Development</option>
+        <option>Technical Assistance</option>
+        <option>Logo &amp; Brand Design</option>
+        <option>Poster &amp; Advertising</option>
+        <option>Photography &amp; Imaging</option>
+        <option>Phones, Laptops &amp; Accessories</option>
         <option>Other / Not Sure Yet</option>
       </select>
+      <span data-fs-error="service"></span>
     </div>
-    <div class="form-group"><label class="form-label">// Project Brief</label><textarea class="form-textarea" placeholder="// describe what you need...&#10;// budget, timeline, goals — the more detail the better"></textarea></div>
-    <button class="submit-btn" onclick="handleSubmit(this)"><span>Send Message</span><span class="arrow">→</span></button>
-  </div>
+
+    <div class="form-group">
+      <label class="form-label" for="fs-message">// Project Brief</label>
+      <textarea id="fs-message" class="form-textarea" name="message"
+                placeholder="// describe what you need...&#10;// budget, timeline, goals — the more detail the better"
+                required data-fs-field></textarea>
+      <span data-fs-error="message"></span>
+    </div>
+
+    <button type="submit" class="submit-btn" id="fs-submit" data-fs-submit-btn>
+      <span>Send Message</span>
+      <span class="arrow">→</span>
+    </button>
+
+  </form>
 </div>
 </div>
 </section>
@@ -884,23 +973,20 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+
+
 // ══════════════════════════════
-// CONTACT FORM
+// FORMSPREE AJAX
 // ══════════════════════════════
-function handleSubmit(btn) {
-  const original = btn.innerHTML;
-  btn.innerHTML = '<span>// Message Sent ✓</span>';
-  btn.style.background = '#0A5C6B';
-  btn.style.borderColor = '#0D7A8C';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.innerHTML = original;
-    btn.style.background = '';
-    btn.style.borderColor = '';
-    btn.disabled = false;
-  }, 3500);
-}
+window.formspree = window.formspree || function () {
+  (formspree.q = formspree.q || []).push(arguments);
+};
+formspree('initForm', {
+  formElement: '#contact-form',
+  formId: 'xredvajr'
+});
 
 </script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
