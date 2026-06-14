@@ -44,15 +44,15 @@ html[data-theme="light"] {
   --void:         #F7F2EE;
   --deep:         #EDE5DC;
   --slate:        #E3D8CE;
-  --crimson:      #6B1A22;
-  --crimson-hi:   #8C2430;
+  --crimson:      #C41E3A;
+  --crimson-hi:   #D32F2F;
   --crimson-lo:   #F0D9DB;
   --stone:        #3A2E2A;
   --stone-hi:     #1A100D;
   --stone-lo:     #8C7B74;
   --ocean:        #0A5C6B;
   --ocean-hi:     #0D7A8C;
-  --red-glow:     rgba(107,26,34,0.15);
+  --red-glow:     rgba(196,30,58,0.15);
   --ocean-glow:   rgba(10,92,107,0.12);
   --nav-bg:       rgba(247,242,238,0.92);
   --menu-bg:      rgba(247,242,238,0.98);
@@ -744,14 +744,7 @@ footer {
 .hero-title .outline { -webkit-text-stroke:1px var(--stone-lo); color:transparent; }
 .hero-sub { font-size:11px; letter-spacing:0.1em; line-height:2; color:var(--stone-lo); max-width:480px; margin-bottom:52px; }
 .hero-actions { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
-.hero-scroll { position:absolute; bottom:40px; left:48px; font-size:9px; letter-spacing:0.25em; color:var(--stone-lo); display:flex; align-items:center; gap:12px; }
-.scroll-line { width:1px; height:48px; background:var(--crimson); animation:scroll-pulse 2s ease-in-out infinite; }
-@keyframes scroll-pulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:0.9;transform:scaleY(1.2)} }
-.hero-stats { position:absolute; right:48px; bottom:40px; display:flex; gap:48px; }
-.stat { text-align:right; }
-.stat-num { font-family:'Syne',sans-serif; font-weight:800; font-size:32px; color:var(--stone-hi); line-height:1; }
-.stat-num .unit { color:var(--crimson-hi); font-size:18px; }
-.stat-label { font-size:9px; letter-spacing:0.2em; color:var(--stone-lo); margin-top:4px; }
+
 .preview-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
 .preview-card { background:var(--deep); border:1px solid rgba(107,26,34,0.12); padding:32px 28px; text-decoration:none; position:relative; overflow:hidden; transition:background 0.3s,border-color 0.3s; }
 .preview-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--crimson); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; }
@@ -785,10 +778,10 @@ footer {
     <span class="nav-letter">DE</span>
   </a>
   <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="products.html">Products</a></li>
     <li><a href="creative.html">Creative</a></li>
+    <li><a href="services.html">Web Dev</a></li>
     <li><a href="photography.html">Photography</a></li>
+    <li><a href="products.html">Procurement</a></li>
     <li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li>
   </ul>
   <a href="contact.html" class="nav-cta">Get in Touch</a>
@@ -812,26 +805,21 @@ footer {
     <a href="services.html" class="btn-primary">Explore Services</a>
     <a href="contact.html" class="btn-ghost">Start a Project</a>
   </div>
-  <div class="hero-scroll"><div class="scroll-line"></div><span>SCROLL</span></div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">50<span class="unit">+</span></div><div class="stat-label">// Projects Delivered</div></div>
-    <div class="stat"><div class="stat-num">6<span class="unit">+</span></div><div class="stat-label">// Service Domains</div></div>
-    <div class="stat"><div class="stat-num">1<span class="unit">×</span></div><div class="stat-label">// Focused Team</div></div>
-  </div>
+
 </section>
 <div class="ticker-wrap"><div class="ticker"><span class="ticker-item">Software Development</span><span class="ticker-item">Web Design</span><span class="ticker-item">Tech Accessories</span><span class="ticker-item">Smartphones &amp; Laptops</span><span class="ticker-item">Logo &amp; Brand Design</span><span class="ticker-item">Advertising</span><span class="ticker-item">Photography</span><span class="ticker-item">Poster Design</span><span class="ticker-item">Technical Support</span><span class="ticker-item">Software Development</span><span class="ticker-item">Web Design</span><span class="ticker-item">Tech Accessories</span><span class="ticker-item">Smartphones &amp; Laptops</span><span class="ticker-item">Logo &amp; Brand Design</span><span class="ticker-item">Advertising</span><span class="ticker-item">Photography</span><span class="ticker-item">Poster Design</span><span class="ticker-item">Technical Support</span></div></div>
 <section style="padding:80px 0 120px;position:relative;z-index:2;">
   <div class="section-inner">
     <div class="section-header reveal"><div><p class="section-tag">// explore_code</p><h2 class="section-title">What We <span class="accent">Do</span></h2></div></div>
     <div class="preview-grid">
-      <a href="services.html" class="preview-card reveal reveal-d1"><p class="preview-num">// 01</p><h3 class="preview-title">Services</h3><p class="preview-desc">Software development, tech assistance, design, and photography — all under one roof.</p><span class="preview-arrow">→</span></a>
-      <a href="products.html" class="preview-card reveal reveal-d2"><p class="preview-num">// 02</p><h3 class="preview-title">Products</h3><p class="preview-desc">Phones, laptops, accessories — the hardware that powers your work and life.</p><span class="preview-arrow">→</span></a>
-      <a href="creative.html" class="preview-card reveal reveal-d3"><p class="preview-num">// 03</p><h3 class="preview-title">Creative</h3><p class="preview-desc">Logos, posters, advertising, and brand identity that get noticed and remembered.</p><span class="preview-arrow">→</span></a>
-      <a href="photography.html" class="preview-card reveal reveal-d4"><p class="preview-num">// 04</p><h3 class="preview-title">Photography</h3><p class="preview-desc">Professional photography, image editing, and visual content for every context.</p><span class="preview-arrow">→</span></a>
+      <a href="creative.html" class="preview-card reveal reveal-d1"><p class="preview-num">// 01</p><h3 class="preview-title">Creative</h3><p class="preview-desc">Logos, posters, advertising, and brand identity that get noticed and remembered.</p><span class="preview-arrow">→</span></a>
+      <a href="services.html" class="preview-card reveal reveal-d2"><p class="preview-num">// 02</p><h3 class="preview-title">Web Dev</h3><p class="preview-desc">Software development, tech assistance, design, and photography — all under one roof.</p><span class="preview-arrow">→</span></a>
+      <a href="photography.html" class="preview-card reveal reveal-d3"><p class="preview-num">// 03</p><h3 class="preview-title">Photography</h3><p class="preview-desc">Professional photography, image editing, and visual content for every context.</p><span class="preview-arrow">→</span></a>
+      <a href="products.html" class="preview-card reveal reveal-d4"><p class="preview-num">// 04</p><h3 class="preview-title">Procurement</h3><p class="preview-desc">Phones, laptops, accessories — the hardware that powers your work and life.</p><span class="preview-arrow">→</span></a>
     </div>
   </div>
 </section>
-<footer><div class="footer-inner"><p class="footer-copy">© 2025 CODE · <a href="mailto:c137techmedia@gmail.com">c137techmedia@gmail.com</a></p><nav class="footer-links"><a href="services.html">Services</a><a href="products.html">Products</a><a href="creative.html">Creative</a><a href="photography.html">Photography</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><p class="footer-copy">// build · ship · repeat</p></div></footer>
+<footer><div class="footer-inner"><div><p class="footer-copy">© 2025 CODE</p><p class="footer-copy"><a href="mailto:c137techmedia@gmail.com">c137techmedia@gmail.com</a></p><nav style="display:flex;gap:16px;margin-top:12px;"><a href="#" style="font-size:9px;color:var(--crimson-hi);text-decoration:none;">// Twitter</a><a href="#" style="font-size:9px;color:var(--crimson-hi);text-decoration:none;">// LinkedIn</a><a href="#" style="font-size:9px;color:var(--crimson-hi);text-decoration:none;">// Instagram</a></nav></div><nav class="footer-links"><a href="creative.html">Creative</a><a href="services.html">Web Dev</a><a href="photography.html">Photography</a><a href="products.html">Procurement</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div style="text-align:right;"><a href="contact.html" class="btn-primary" style="display:inline-block;margin-bottom:12px;">Start a Project</a><p class="footer-copy">// build · ship · repeat</p></div></div></footer>
 <script>
 /* ════════════════════════════════════════
    CODE — Shared JavaScript
