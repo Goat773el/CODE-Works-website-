@@ -11,6 +11,7 @@
 code-site/
 ├── index.html          ← Home / Landing page
 ├── services.html       ← Services page
+├── work.html            ← Work / Portfolio page
 ├── products.html       ← Tech products page
 ├── creative.html       ← Design & advertising page
 ├── photography.html    ← Photography page
@@ -88,4 +89,4 @@ Edit any HTML file locally, then re-upload or push via Git. Changes go live with
 
 ---
 
-*// CODE · c137techmedia@gmail.com · +263 77 883 6177*
+*// CODE · c137techmedia@gmail.com · +263 78 578 5349*
